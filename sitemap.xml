@@ -149,10 +149,4 @@ layout: null
   <sitemap><loc>{{o}}/sitemap-laboratorium-10.xml</loc></sitemap>
   <sitemap><loc>{{o}}/sitemap-laboratorium-11.xml</loc></sitemap>
   <sitemap><loc>{{o}}/sitemap-laboratorium-12.xml</loc></sitemap>
-  <sitemap><loc>{{o}}/sitemap-laboratorium-13.xml</loc></sitemap>
-  <sitemap><loc>{{o}}/sitemap-laboratorium-14.xml</loc></sitemap>
-  <sitemap><loc>{{o}}/sitemap-laboratorium-15.xml</loc></sitemap>
-  <sitemap><loc>{{o}}/sitemap-laboratorium-16.xml</loc></sitemap>
-  <sitemap><loc>{{o}}/sitemap-laboratorium-17.xml</loc></sitemap>
-  <sitemap><loc>{{o}}/sitemap-laboratorium-18.xml</loc></sitemap>
 </sitemapindex>
