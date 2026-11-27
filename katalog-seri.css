@@ -1,0 +1,85 @@
+:root{color-scheme:light;--paper:#f7f4ed;--surface:#fffdf9;--ink:#1c2621;--muted:#505d55;--line:#dcded2;--accent:#284d3d;--tint:#edf2e8;--rim:#a7bbae;--focus:#855018;font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+:root[data-dirac-theme=dark]{color-scheme:dark;--paper:#131b17;--surface:#1c2821;--ink:#eff4ea;--muted:#b4c1b7;--line:#3a4b41;--accent:#c2ddba;--tint:#26362a;--rim:#769281;--focus:#e1ad6d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink)}
+a{color:var(--accent);text-underline-offset:.22em}
+a:hover{text-decoration-thickness:.14em}
+:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+[hidden]{display:none!important}
+.wrap{width:min(1140px,calc(100% - 2.5rem));margin-inline:auto}
+.skip{position:absolute;left:1rem;top:-8rem;padding:1rem;background:var(--surface);z-index:2}
+.skip:focus{top:1rem}
+.top{border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap,.toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap}
+.top .wrap{padding-block:1rem}
+.brand{font-size:.85rem;font-weight:750;letter-spacing:.07em;text-decoration:none}
+.toolbar nav,.lang,.links{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem 1rem}
+.lang a{font-size:.83rem}
+.lang [aria-current=page]{font-weight:750}
+button,input{font:inherit;color:inherit;background:var(--surface);border:1px solid var(--rim);border-radius:.5rem}
+.theme{padding:.25rem .55rem;cursor:pointer;font-size:.83rem}
+main{padding-block:1.6rem 4rem}
+.crumbs{display:flex;align-items:center;gap:.35rem .7rem;flex-wrap:wrap;font-size:.87rem;color:var(--muted);padding:0;margin:0 0 2rem;list-style:none}
+.crumbs li+li::before{content:"/";margin-inline-end:.7rem;color:var(--muted)}
+h1,h2,h3,p{margin-block-start:0}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(2rem,4vw,3.6rem);line-height:1.06;letter-spacing:-.025em;margin-block-end:.8rem;overflow-wrap:anywhere}
+h2{font-size:1.18rem;line-height:1.3;margin-block:1.8rem .7rem}
+h3{font-size:1rem;line-height:1.35;overflow-wrap:anywhere}
+.lede,.code,figcaption,.subtle{color:var(--muted)}
+.lede{max-width:62ch}
+.badge{display:inline-block;border-radius:.35rem;background:var(--tint);color:var(--accent);padding:.25rem .55rem;font-size:.8rem;margin-bottom:.7rem}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.media{margin:0}
+.media-box{position:relative;display:grid;place-items:center;aspect-ratio:16/9;overflow:hidden;background:var(--tint);color:var(--muted);border:1px solid var(--line);border-radius:1rem;text-align:center}
+.media-box>span{padding:.6rem;font-size:.78rem}
+.media-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;font-size:0;color:transparent;background:var(--surface)}
+.media-box img[data-missing]{visibility:hidden}
+figcaption{font-size:.82rem;margin-top:.55rem}
+.details{margin:1rem 0 0;border-block:1px solid var(--line)}
+.details div{display:grid;grid-template-columns:minmax(7rem,1fr) 1.4fr;gap:1rem;padding:.55rem 0}
+.details div+div{border-top:1px solid var(--line)}
+.details dt{font-weight:650}
+.details dd{margin:0;overflow-wrap:anywhere}
+.description{max-width:76ch}
+.action{display:inline-block;padding:.55rem .85rem;border-radius:.5rem;background:var(--accent);color:var(--surface);text-decoration:none;font-weight:650}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,14rem),1fr));gap:1rem;padding:0;list-style:none}
+.card{min-width:0;border:1px solid var(--line);border-radius:.8rem;background:var(--surface);padding:.8rem;transition:border-color .9s ease,box-shadow .9s ease}
+.card:hover,.card:focus-within{border-color:var(--rim);box-shadow:0 5px 18px #0001}
+.card .media-box{border-radius:.55rem}
+.card h3{margin:.65rem 0 .25rem}
+.card p{margin:0;font-size:.82rem}
+.search{display:grid;gap:.3rem;max-width:32rem;margin:1.2rem 0 .5rem}
+.search label{font-weight:650}
+.search input{width:100%;padding:.65rem .75rem}
+footer{border-top:1px solid var(--line);padding:1.3rem 0;color:var(--muted);font-size:.85rem}
+@media(max-width:680px){.layout{grid-template-columns:1fr}.wrap{width:calc(100% - 2rem)}}
+@media(prefers-reduced-motion:no-preference){.intro,.layout{animation:catalog-appear 1.65s cubic-bezier(.2,.7,.24,1) both}@keyframes catalog-appear{from{opacity:.72;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}}
+@media(prefers-reduced-motion:reduce){.card{transition:none}}
+.navset{gap:.6rem 1.2rem;margin:.7rem 0 1rem}
+.navset a[aria-current=page]{font-weight:750}
+.toolbar label{display:flex;align-items:center;gap:.4rem;font-size:.85rem}
+.toolbar select{font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:.4rem;padding:.25rem}
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr));align-items:start;gap:1rem}
+.catalog-grid .card{content-visibility:auto;contain-intrinsic-size:auto 205px}
+.catalog-grid .card h2{margin:.65rem 0;font-size:1rem}
+.card details{margin:.6rem 0}
+.card summary{cursor:pointer;color:var(--accent);font-size:.87rem}
+.card details div{padding-top:.6rem;color:var(--ink);overflow-wrap:anywhere}
+.detail-status:empty{display:none}
+.detail-back{margin-bottom:1rem}
+
+.catalog-grid .catalog-summary{margin-block:.35rem}
+.catalog-grid .catalog-price,[data-detail-price]{font-weight:700;margin-block:.6rem}
+.catalog-grid .catalog-contact{display:inline-block;margin-top:.4rem;font-size:.85rem}
+.catalog-variants img{max-width:min(100%,22rem);height:auto}
+.catalog-variants{margin-top:.8rem}
+@media(prefers-reduced-motion:no-preference){
+  .catalog-grid .media-box img{transition:transform 1.8s cubic-bezier(.2,.7,.24,1)}
+  .catalog-grid .card:hover .media-box img,.catalog-grid .card:focus-within .media-box img{transform:scale(1.035)}
+  .catalog-grid .catalog-contact{transition:text-underline-offset 1.4s ease}
+  .catalog-grid .catalog-contact:hover,.catalog-grid .catalog-contact:focus-visible{text-underline-offset:.38em}
+}
+
+/* Scoped explanatory caption for outdated contact text printed inside legacy photos. */
+figure.media .photo-email-note{margin:.7rem 0 0;padding:.65rem .8rem;border:1px solid #d5c59b;border-radius:.7rem;background:#fff8e9;color:#47391f;font-size:.79rem;line-height:1.55;overflow-wrap:anywhere}
+figure.media .photo-email-note[hidden]{display:none!important}
