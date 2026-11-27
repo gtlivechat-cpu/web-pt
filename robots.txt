@@ -1,0 +1,7 @@
+---
+layout: null
+---
+{%- assign configured_origin = site.url | append: site.baseurl -%}{%- assign o = configured_origin | default: site.github.url | replace_first: 'http://', 'https://' -%}User-agent: *
+Allow: /
+
+Sitemap: {{o}}/sitemap.xml
