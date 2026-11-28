@@ -14,7 +14,10 @@
   document.documentElement.classList.add('js');
   const setOpen = (open) => {
     menu.setAttribute('aria-expanded', String(open));
-    menu.setAttribute('aria-label', open ? 'Tutup menu utama' : 'Buka menu utama');
+    const menuLabel = open
+      ? panel.querySelector('.nav-close')?.getAttribute('aria-label')
+      : menu.getAttribute('data-l10n-aria-label-' + document.documentElement.lang);
+    if (menuLabel) menu.setAttribute('aria-label', menuLabel);
     menu.classList.toggle('dig-menu-opening', open);
     menu.classList.toggle('dig-menu-closing', !open);
     panel.classList.toggle('is-open', open);
