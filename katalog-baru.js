@@ -189,8 +189,8 @@
         const wanted = node.getAttribute(`data-l10n-${language}`) ?? copy[language][node.dataset.l10nKey];
         if (typeof wanted === 'string') text(node, wanted);
       }
-      for (const node of document.querySelectorAll('[data-l10n-aria-label-id], [data-l10n-placeholder-id]')) {
-        for (const attribute of ['aria-label', 'placeholder']) {
+      for (const node of document.querySelectorAll('[data-l10n-aria-label-id], [data-l10n-placeholder-id], [data-l10n-alt-id], [data-l10n-title-id]')) {
+        for (const attribute of ['aria-label', 'placeholder', 'alt', 'title']) {
           const wanted = node.getAttribute(`data-l10n-${attribute}-${language}`);
           if (wanted !== null) node.setAttribute(attribute, wanted);
         }
