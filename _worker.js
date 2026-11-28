@@ -98,7 +98,7 @@ const resourceIntegrity = {
   "katalog-laboratorium-kayulab-02.json": [1437284, "zx/MOxrmDhc01vzi/EHO71iKGYeqKbvyeB/AtT/jKHbMiOfM+OgsOwVj/AQvAVFsvy+09hyhdXpiaX4bqw/F5A=="],
   "katalog-laboratorium-kapaslab-01.json": [1453349, "d4mvBRrVtxxSPAXvshSyuBgIb+sb5KCRfIA/o4ARaNUwQVGz8jyUfUZPs9qVKZ4aObKBmvP87L8f7byMEkSh6w=="],
   "katalog-laboratorium-kapaslab-02.json": [1414141, "S6MysGtW5HXzU/5PMytCFyv2JRkDebhTBDHoxczLB6OKeuc66VOsxY8xaUudYP0DlWSCg5VBW6Wib3A5NVrU/g=="],
-  "katalog-laboratorium-generated-01.json": [42797, "5rPvucfwxcQpkJAHrTS9ie+fkKKmSjXK4+d4nx0sjRlpkuGd0lajf5QzAsDk3IDSuYec+QsKHf/gvnTPqkJL8g=="],
+  "katalog-laboratorium-generated-01.json": [764092, "Bjm3aKcjaft1sd49XvNb7+cXlczMWkJ2Yr6pv+3dZbilL1jPWCFUF+3b9QKD4HPusoZWDcZ3igNXENK8b1V7Fw=="],
   "katalog-laboratorium.json": [
     1347319,
     "QdKy9fs9RwpIq3T/1P4lOb9vD1PGz3WXwXvJ4lTOSK1hW+nbgPKSWKyuAlx0pT45mIpE9FEhywaynrY0MWS6yw=="
@@ -246,6 +246,138 @@ function generatedLabPreview(item, lang, locale) {
   return copy[lang]||copy.id;
 }
 
+const workbookTopics = {"alat-gelas-resin-wadah-logam":{"labels":["Alat Gelas, Resin, Wadah Logam","Glassware, resin products and metal containers","Radas kaca, produk resin dan bekas logam","Verrerie, articles en résine et récipients métalliques","Material de vidrio, artículos de resina y recipientes metálicos"],"count":2298},"bioteknologi":{"labels":["Bioteknologi","Biotechnology","Bioteknologi","Biotechnologie","Biotecnología"],"count":874},"perlengkapan-penelitian":{"labels":["Perlengkapan Laboratorium Penelitian","Research laboratory supplies","Kelengkapan makmal penyelidikan","Fournitures de laboratoire de recherche","Suministros para laboratorios de investigación"],"count":3207},"alat-ukur-pipet-suntikan":{"labels":["Alat Ukur, Dispenser Pipet, Suntikan","Measuring instruments, pipette dispensers and syringes","Alat pengukur, dispenser pipet dan picagari","Instruments de mesure, distributeurs pour pipettes et seringues","Instrumentos de medición, dispensadores para pipetas y jeringas"],"count":1212},"fraksinasi-separasi-ekstraksi-filtrasi":{"labels":["Fraksinasi, Separasi, Ekstraksi, Filtrasi","Fractionation, separation, extraction and filtration","Pemeringkatan, pemisahan, pengekstrakan dan penurasan","Fractionnement, séparation, extraction et filtration","Fraccionamiento, separación, extracción y filtración"],"count":1437},"meja-lemari-area-bersih":{"labels":["Meja, Lemari Area Bersih","Clean area benches and cabinets","Meja dan kabinet kawasan bersih","Paillasses et armoires pour zones propres","Mesas y armarios para zonas limpias"],"count":137},"pemanas-pendingin":{"labels":["Pemanas, Pendingin, Kotak Pendingin","Heating, cooling and insulated boxes","Pemanasan, penyejukan dan kotak penyejuk","Chauffage, refroidissement et glacières","Calefacción, refrigeración y neveras portátiles"],"count":467},"pembersihan-sterilisasi-sanitasi":{"labels":["Pembersihan, Sterilisasi, Pembersih, Sanitasi, Pembuangan","Cleaning, sterilization, sanitation and waste disposal","Pembersihan, pensterilan, sanitasi dan pelupusan sisa","Nettoyage, stérilisation, assainissement et gestion des déchets","Limpieza, esterilización, saneamiento y gestión de residuos"],"count":168},"pemurnian-air":{"labels":["Pemurnian Air, Produk Terkait","Water purification and related supplies","Penulenan air dan bekalan berkaitan","Purification de l’eau et fournitures associées","Purificación del agua y suministros relacionados"],"count":135},"pengaduk-penghancur-pencampur":{"labels":["Pengaduk, Penghancur, Pencampur","Stirrers, grinders and mixers","Pengacau, pengisar dan pencampur","Agitateurs, broyeurs et mélangeurs","Agitadores, trituradoras y mezcladores"],"count":532},"penyimpanan-fasilitas":{"labels":["Penyimpanan, Peralatan, Fasilitas Laboratorium","Laboratory storage, equipment and facilities","Penyimpanan, peralatan dan kemudahan makmal","Rangement, équipements et installations de laboratoire","Almacenamiento, equipos e instalaciones de laboratorio"],"count":245},"peralatan-analisa-lingkungan":{"labels":["Peralatan Analisa Lingkungan","Environmental analysis equipment","Peralatan analisis alam sekitar","Équipements d’analyse environnementale","Equipos de análisis ambiental"],"count":293},"perlengkapan-lain":{"labels":["Tidak tercantum pada jalur gambar","Other laboratory supplies","Kelengkapan makmal lain","Autres fournitures de laboratoire","Otros suministros de laboratorio"],"count":854},"uji-air-tanah":{"labels":["Uji Air, Tanah","Water and soil testing","Pengujian air dan tanah","Analyses de l’eau et du sol","Análisis de agua y suelo"],"count":345},"alat-ukur-lingkungan":{"labels":["Alat Ukur Lingkungan","Environmental measuring instruments","Alat pengukuran alam sekitar","Instruments de mesure environnementale","Instrumentos de medición ambiental"],"count":1,"previousId":3517}};
+const workbookTopicLanguages = ['id','en','ms','fr','es'];
+function workbookTopicText(slug, lang) {
+  const group = workbookTopics[slug];
+  const i = workbookTopicLanguages.indexOf(lang);
+  const title = slug === 'perlengkapan-lain' && i === 0 ? 'Perlengkapan laboratorium lainnya' : group.labels[i];
+  const count = group.count.toLocaleString(lang);
+  const single = group.count === 1;
+  const summary = [
+    `Telusuri ${count} produk dalam kelompok ${title}. Setiap entri memuat identitas produk, ilustrasi dan uraian penggunaannya.`,
+    `Explore ${count} ${single ? 'product' : 'products'} in the ${title} category. Each entry identifies the product and includes an illustration and a description of its use.`,
+    `Terokai ${count} produk dalam kategori ${title}. Setiap entri mengenal pasti produk dan menyertakan ilustrasi serta penerangan kegunaannya.`,
+    `Consultez ${count} ${single ? 'produit' : 'produits'} de la catégorie « ${title} ». Chaque fiche présente le produit, son illustration et une description de son utilisation.`,
+    `Consulta ${count} ${single ? 'producto' : 'productos'} en la categoría «${title}». Cada ficha identifica el producto e incluye una ilustración y una descripción de su uso.`
+  ][i];
+  return {title,summary};
+}
+
+function previousWorkbookRoute(previous, lang) {
+  const suffix = lang === 'id' ? '' : '&lang=' + lang;
+  if (typeof previous === 'number') return './laboratorium.html?produk=' + previous + suffix;
+  const number = previous.match(/\d+$/)[0];
+  const folder = previous.slice(0, -number.length);
+  return './katalog-' + folder + (Number(number) > 500 ? '-2' : '') + '.html?produk=' + previous + suffix;
+}
+async function unpackWorkbook(packet, dictionary) {
+  const folders = ['auroralab','cahayalab','deltalab','elanglab','fokuslab','garudalab','harmonilab','intilab','jayalab','kiranalab','lenteralab','novalab','orbitlab','pendarlab','terralab','mumlab','dinlab','nusalab','surialab','mitralab'];
+  const group = (packet.first - 23923) / 1000;
+  if (!Number.isSafeInteger(packet.first) || !Number.isInteger(group) || group < 0 || group >= folders.length ||
+      packet.folder !== folders[group] || packet.encoding !== 'deflate-base64-v1' ||
+      !Number.isSafeInteger(packet.size) || packet.size < 2 || packet.size > 300000 ||
+      typeof packet.data !== 'string' || packet.data.length > 60000) throw new Error('Invalid workbook catalogue group');
+  const bytes = Uint8Array.from(atob(packet.data), c => c.charCodeAt(0));
+  const output = new Uint8Array(packet.size);
+  let offset = 0;
+  const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate'));
+  await stream.pipeTo(new WritableStream({
+    write(chunk) {
+      if (chunk.byteLength > output.length - offset) throw new Error('Workbook catalogue exceeds declared size');
+      output.set(chunk,offset);
+      offset += chunk.byteLength;
+    }
+  }));
+  if (offset !== output.length) throw new Error('Incomplete workbook catalogue');
+  const rows = JSON.parse(new TextDecoder('utf-8', {fatal:true}).decode(output));
+  if (!Array.isArray(rows) || rows.length !== 1000) throw new Error('Invalid workbook catalogue length');
+  return rows.map((row, index) => {
+    if ((Number.isSafeInteger(row) && row >= 0 && row < 23923) ||
+        (typeof row === 'string' && /^(?:dauna|embun|hutan|kapas|kayu|langit|mentari)lab(?:[1-9]\d{0,2}|1000)$/.test(row))) {
+      return {id:packet.first + index, previousProduct:row};
+    }
+    if (!Array.isArray(row) || row.length !== 8 || row.some(value => typeof value !== 'string' || value.length > 1024)) throw new Error('Invalid workbook catalogue row');
+    const [title, caption, department, subgroup, brand, sku, sourceId, sourceIds] = row;
+    const internalSku = packet.folder + (index + 1);
+    return {id:packet.first + index, workbook:true, workbookDictionary:dictionary, title, desc:caption, workbookCaption:caption, workbookCategory:department,
+      category:'Alat', subcategory:subgroup || department, brand, catalogNumber:sku || null, internalSku,
+      sourceProductId:sourceId, sourceIds:sourceIds || sourceId, imageFile:internalSku + '.webp', imageFolder:packet.folder,
+      imageStatus:'ready', descriptionMode:'localized_generated_v1'};
+  });
+}
+function workbookLocale(product, lang) {
+  const langIndex = {id:0, en:1, ms:2, fr:3, es:4}[lang] ?? 0;
+  const data = product.workbookDictionary;
+  const [type, ...details] = product.workbookCaption.split(' · ');
+  const entry = data.terms[type];
+  const department = data.departments[product.workbookCategory];
+  const category = department[0][langIndex];
+  const illustratedType = langIndex ? entry[langIndex] : type;
+  const roleKey = data.roles[product.internalSku.toLowerCase()];
+  const role = roleKey ? data.roleData[roleKey] : null;
+  const subcategory = role ? role[langIndex + 1] : illustratedType;
+  const attributes = details.map(value => data.materials[value]?.[langIndex] ?? value);
+  const caption = [illustratedType, ...attributes].join(' · ');
+  const rawTitle = product.title;
+  const suffix = langIndex && rawTitle.match(/\s+\(([^()]*)\)\s*$/u);
+  const gloss = suffix && Object.hasOwn(data.gloss, suffix[1]) ? data.gloss[suffix[1]][langIndex] : null;
+  const titleText = gloss == null ? rawTitle : rawTitle.slice(0,suffix.index) + (gloss ? ' (' + gloss + ')' : '');
+  const source = product.sourceProductId;
+  const sku = product.internalSku.toUpperCase();
+  const title = langIndex && data.distinguish[product.internalSku.toLowerCase()] ? titleText + ' (' + sku + ')' : titleText;
+  const words = {title, sku, source, category, caption, role:subcategory};
+  const translate = key => data.copy[key][langIndex].replace(/\{(title|sku|source|category|caption|role)\}/gu, (_, name) => words[name]);
+  const summary = role ? title + '. ' + translate('sourceRole') : translate('summary');
+  return {
+    title, category, subcategory, caption, summary,
+    keywords: [title, sku, source, subcategory, category].join(', '),
+    notice: data.copy.notice[langIndex],
+    get description() {
+      const paragraphs = [translate('identity')];
+      const profile = role ? role[0] : entry[0];
+      if (role) paragraphs.push(translate('conflict'));
+      const detail = !role && entry[5] ? entry[5][langIndex] + ' ' : '';
+      paragraphs.push(translate(role ? 'sourceRole' : 'pictured') + ' ' + detail + data.profiles[profile][langIndex], department[1][langIndex], translate('variant'));
+      return paragraphs.join('\n\n');
+    }
+  };
+}
+const workbookTopicExamples = {"alat-gelas-resin-wadah-logam":[[23924,"P110037152"],[39283,"P113001422"],[40878,"P101568317"]],"bioteknologi":[[27902,"P111026481"],[28357,"P103489612"],[41550,"P106446326"]],"perlengkapan-penelitian":[[33135,"P111045389"],[36089,"P104684038"],[43587,"P117163395"]],"alat-ukur-pipet-suntikan":[[26492,"P110968524"],[27467,"P110401074"],[41316,"P103181482"]],"fraksinasi-separasi-ekstraksi-filtrasi":[[28580,"P111053467"],[29488,"P105887012"],[42161,"P108215960"]],"meja-lemari-area-bersih":[[29731,"P108003639"],[29875,"P108108387"],[29980,"P117148475"]],"pemanas-pendingin":[[29983,"P102255753"],[30450,"P111079261"],[42215,"P117145034"]],"pembersihan-sterilisasi-sanitasi":[[30783,"P108116748"],[30934,"P106278947"],[42235,"P115879182"]],"pemurnian-air":[[31013,"P104693391"],[31157,"P110233853"],[42307,"P115855827"]],"pengaduk-penghancur-pencampur":[[31194,"P110995324"],[31654,"P111728923"],[42449,"P104805394"]],"penyimpanan-fasilitas":[[32151,"P106460168"],[32430,"P106262122"],[42461,"P115874789"]],"peralatan-analisa-lingkungan":[[32687,"P117752658"],[32934,"P108117668"],[42505,"P102231449"]],"perlengkapan-lain":[[37514,"P117118252"],[37941,"P117175132"],[43822,"P113127252"]],"uji-air-tanah":[[38136,"P111002320"],[38563,"P111780561"],[43922,"P106649428"]],"alat-ukur-lingkungan":[[3517,"P106085329"]]};
+function workbookTopicPreview(slug, lang, href) {
+  const {title,summary} = workbookTopicText(slug,lang);
+  const suffix = lang === 'id' ? '' : '&amp;lang=' + lang;
+  const examples = workbookTopicExamples[slug].map(([id,ref]) =>
+    '<li><a href="./laboratorium.html?produk=' + id + suffix + '">' + escapeMarkup(ref) + '</a></li>').join('');
+  return '<noscript><section lang="' + lang + '" itemscope itemtype="https://schema.org/CollectionPage"><h1 itemprop="name">' + escapeMarkup(title) +
+    '</h1><p itemprop="description">' + escapeMarkup(summary) + '</p><link itemprop="url" href="' + href + '"><ul>' + examples + '</ul></section></noscript>';
+}
+async function readWorkbookRecord(payload, code, lang) {
+  const id = Number(code);
+  const first = 23923 + Math.floor((id - 23923) / 1000) * 1000;
+  const packet = payload.find(row => row.first === first);
+  if (!packet) return;
+  const dictionary = payload.find(row => row.workbookDictionary)?.workbookDictionary;
+  const product = (await unpackWorkbook(packet,dictionary))[id - first];
+  if (!product || product.id !== id) return;
+  if (Object.hasOwn(product,'previousProduct')) return product;
+  const local = workbookLocale(product,lang);
+  const imageHost = product.imageFolder === 'cahayalab' ? 'https://gtkeamanan-sketch.github.io/' : 'https://gtdashboard737.github.io/';
+  const image = new URL(product.imageFolder + '/' + product.imageFile,imageHost).href;
+  const i = languages.indexOf(lang);
+  const categoryLabel = ['Kategori','Category','Kategori','Catégorie','Categoría'][i];
+  const brandLabel = ['Merek','Brand','Jenama','Marque','Marca'][i];
+  const referenceLabel = ['Referensi produk','Product reference','Rujukan produk','Référence produit','Referencia del producto'][i];
+  const facts = [[categoryLabel,local.subcategory || local.category,'category'],[referenceLabel,product.sourceProductId,'mpn']];
+  if (product.brand) facts.push([brandLabel,product.brand,'brand']);
+  const topic = Object.keys(workbookTopics).find(slug => workbookTopics[slug].labels[0] === product.workbookCategory);
+  const title = local.title;
+  const summary = descriptionSnippet(local.summary);
+  const entry = {title:title + ' | ' + product.internalSku + ' | PT DINCORP INOVASI ASIA',summary,
+    description:local.description.split(/\n\s*\n/),facts,keywords:local.keywords,alt:title};
+  return {title,summary,code:product.internalSku,image,localized:true,keywords:local.keywords,productEntry:entry,alternateName:product.title,workbookNotice:local.notice,workbookGroup:topic};
+}
+
 async function readRecord(env, origin, name, code, lang = 'id') {
   const key = name + '\u0000' + code + '\u0000' + lang;
   if (resourceCache.has(key)) return resourceCache.get(key);
@@ -270,6 +402,8 @@ async function readRecord(env, origin, name, code, lang = 'id') {
       result = {title:item.title, summary:item.desc, code:item.code, brand:item.brand, perfume:perfumeExcerpt(item), page:'parfum-' + kind};
       return true;
     }, fragment => fragment.includes(token));
+  } else if (name === 'katalog-laboratorium-generated-01.json' && Number(code) >= 23923 && Number(code) <= 43922 && Array.isArray(payload)) {
+    result = await readWorkbookRecord(payload,code,lang);
   } else {
     const item = Array.isArray(payload) ? payload.find(row => String(row.id) === code) : Object.hasOwn(payload, code) && payload[code];
     if (item) {
@@ -407,7 +541,15 @@ const dictionaryName = page => page === 'berita-detail' ? 'teks-berita-detail.js
   : page === 'produk' ? 'bahasa-detail-produk.json' : page === 'laboratorium' ? 'teks-laboratorium.json' : 'bahasa-katalog-parfum.json';
 function identify(url, page) {
   const key = page === 'berita-detail' ? 'id' : page === 'produk' ? 'sku' : 'produk';
-  if (!url.searchParams.has(key)) return;
+  if (!url.searchParams.has(key)) {
+    const topics = url.searchParams.getAll('topik');
+    const locales = url.searchParams.getAll('lang');
+    if (page === 'laboratorium' && topics.length === 1 && Object.hasOwn(workbookTopics,topics[0]) &&
+        locales.length <= 1 && (!locales.length || languages.includes(locales[0]))) {
+      return {key:'topik',code:topics[0],lang:locales[0] || 'id',topic:true};
+    }
+    return;
+  }
   const query = url.searchParams.getAll(key);
   const locales = url.searchParams.getAll('lang');
   if (query.length !== 1 || locales.length > 1 || (locales.length && !languages.includes(locales[0]))) return;
@@ -420,6 +562,7 @@ function identify(url, page) {
   if (page === 'laboratorium' && /^[1-9]\d{0,4}$/.test(code)) {
     const chunk = labs.find(([max]) => Number(code) <= max);
     if (chunk) name = 'katalog-laboratorium' + chunk[1] + '.json';
+    else if (Number(code) <= 43922) name = 'katalog-laboratorium-generated-01.json';
   }
   if (name) return {key, code, name, lang:locales[0] || 'id'};
 }
@@ -465,8 +608,11 @@ function renderPreview(source, url, page, detail, record, translations) {
   const fullDescription = entry ? '<div itemprop="description">' + entry.description.map(text => '<p>' + escapeMarkup(text) + '</p>').join('') + '</div>' : '';
   const productFacts = entry ? '<dl>' + entry.facts.map(([label,value,property]) => '<dt>' + escapeMarkup(label) + '</dt><dd' + (['brand','category','size'].includes(property) ? ' itemprop="' + property + '"' : '') + '>' + escapeMarkup(value) + '</dd>').join('') + '</dl><link itemprop="url" href="' + href + '"><meta itemprop="keywords" content="' + escapeMarkup(entry.keywords) + '">' : '';
   const productImage = entry && record.image ? '<img itemprop="image" src="' + escapeMarkup(record.image) + '" alt="' + escapeMarkup(entry.alt) + '" width="640" height="360" loading="lazy">' : '';
-  const preview = '<noscript><article lang="' + lang + '" itemscope itemtype="https://schema.org/' + (article ? 'Article' : 'Product') + '"' + (entry ? ' itemid="' + href + '#product"' : '') + '><h1' + (!localizedTitle && article ? ' lang="id"' : '') + ' itemprop="' +
-    (article ? 'headline' : 'name') + '">' + escapeMarkup(title) + '</h1>' + productImage + (entry ? fullDescription + productFacts : (readable ? '<p itemprop="description">' + escapeMarkup(readable) + '</p>' : '')) + notes +
+  const alternateName = record.alternateName && record.alternateName !== title ? '<meta itemprop="alternateName" content="' + escapeMarkup(record.alternateName) + '">' : '';
+  const workbookNote = record.workbookNotice ? '<aside role="note">' + escapeMarkup(record.workbookNotice) + '</aside>' : '';
+  const groupLink = record.workbookGroup ? '<p><a href="./laboratorium.html?topik=' + record.workbookGroup + (lang === 'id' ? '' : '&amp;lang=' + lang) + '#katalog">' + escapeMarkup(workbookTopicText(record.workbookGroup,lang).title) + '</a></p>' : '';
+  const preview = record.workbookTopic ? workbookTopicPreview(record.workbookTopic,lang,href) : '<noscript><article lang="' + lang + '" itemscope itemtype="https://schema.org/' + (article ? 'Article' : 'Product') + '"' + (entry ? ' itemid="' + href + '#product"' : '') + '><h1' + (!localizedTitle && article ? ' lang="id"' : '') + ' itemprop="' +
+    (article ? 'headline' : 'name') + '">' + escapeMarkup(title) + '</h1>' + productImage + (entry ? alternateName + fullDescription + workbookNote + productFacts + groupLink : (readable ? '<p itemprop="description">' + escapeMarkup(readable) + '</p>' : '')) + notes +
     (date ? '<time itemprop="datePublished" datetime="' + date + '">' + date + '</time>' : '') +
     (!entry && record.brand ? '<p itemprop="brand">' + escapeMarkup(record.brand) + '</p>' : '') +
     (!article && facts ? '<p>SKU <span itemprop="sku">' + escapeMarkup(facts) + '</span></p>' : '') + contact + '</article></noscript>';
@@ -494,7 +640,7 @@ function renderPreview(source, url, page, detail, record, translations) {
     return tag.replace(/\scontent=(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i, (_, dq, sq, unquoted) =>
       (kind === 'description' ? ' data-catalog-description="' + (dq ?? sq ?? unquoted).replace(/"/g,'&quot;') + '"' : entry && ['keywords','og:image','og:image:alt','twitter:image','twitter:image:alt','og:type'].includes(kind) ? ' data-catalog-content="' + (dq ?? sq ?? unquoted).replace(/"/g,'&quot;') + '"' : '') + ' content="' + escapeMarkup(value) + '"');
   });
-  return (entry ? head.replace(/<html\b([^>]*?)\blang="[^"]*"/i, '<html$1lang="' + lang + '"') : head) + links + source.slice(headEnd).replace(/<body(?:\s[^>]*)?>/i, body => body + preview);
+  return (entry || record.workbookTopic ? head.replace(/<html\b([^>]*?)\blang="[^"]*"/i, '<html$1lang="' + lang + '"') : head) + links + source.slice(headEnd).replace(/<body(?:\s[^>]*)?>/i, body => body + preview);
 }
 
 function streamPreview(body, url, page, detail, record, translations, preview) {
@@ -554,7 +700,10 @@ async function detailResponse(request, env, url, page, detail) {
   }
   try {
     let record;
-    if (detail.name === 'katalog-parfum-data.json') {
+    if (detail.topic) {
+      const copy = workbookTopicText(detail.code,detail.lang);
+      record = {title:copy.title,summary:copy.summary,keywords:copy.title,localized:true,workbookTopic:detail.code};
+    } else if (detail.name === 'katalog-parfum-data.json') {
       const product = await catalogueRecord(env, url, catalogueRoutes['katalog-parfum'], detail.code.toLowerCase(), detail.lang) || await catalogueRecord(env, url, catalogueRoutes['katalog-parfum-2'], detail.code.toLowerCase(), detail.lang);
       if (product) {
         const entry = product.entry;
@@ -567,6 +716,10 @@ async function detailResponse(request, env, url, page, detail) {
     if (record?.alias) {
       detail = {...detail, code:record.alias};
       record = await readRecord(env, url.origin, detail.name, detail.code, detail.lang);
+    }
+    if (record && Object.hasOwn(record, 'previousProduct')) {
+      if (!record.previousProduct) return new Response(null,{status:410,headers:{'X-Robots-Tag':'noindex'}});
+      return Response.redirect(new URL(previousWorkbookRoute(record.previousProduct, detail.lang),url).href,301);
     }
     if (!record?.title) return request.method === 'HEAD' ? new Response(null, asset) : asset;
     const translations = record.localized || detail.lang === 'id' ? null : await detailTranslations(env, url.origin, page, record);
@@ -760,7 +913,8 @@ export default {
       return new Response(null, {status: 503, headers: {'Cache-Control': 'no-store'}});
     }
     const origin = url.origin.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-    const body = source.replace(templatePrefix, '').replaceAll('{{o}}', origin);
+    const template = source.replace(templatePrefix, '');
+    const body = (robots ? template : template.replace(/^[ \t\r\n]+(?=<\?xml\b)/, '')).replaceAll('{{o}}', origin);
     return new Response(request.method === 'HEAD' ? null : body, {
       headers: {
         'Content-Type': robots ? 'text/plain; charset=utf-8' : 'application/xml; charset=utf-8',
