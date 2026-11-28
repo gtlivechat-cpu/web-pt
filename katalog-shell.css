@@ -1515,3 +1515,30 @@ body[data-catalog] .quick-contact-panel .icon-button{display:grid;place-items:ce
 @media(max-width:760px){body[data-catalog] .dirac-page-scroll{right:max(.6rem,env(safe-area-inset-right));bottom:calc(max(.65rem,env(safe-area-inset-bottom)) + 3.9rem);width:3.15rem;height:3.15rem}body[data-catalog] .quick-contact{right:max(.75rem,env(safe-area-inset-right));bottom:max(.8rem,env(safe-area-inset-bottom))}body[data-catalog] .quick-contact .wa-float{width:3.55rem;height:3.55rem}body[data-catalog] .quick-contact-panel{width:min(21.5rem,calc(100vw - 1.5rem))}body[data-catalog]:has([data-quick-contact-panel]:not([hidden])) .dirac-page-scroll{visibility:hidden;pointer-events:none}}
 @media(prefers-reduced-motion:reduce){body[data-catalog] .dirac-page-scroll svg,body[data-catalog] .quick-contact .wa-float,body[data-catalog] .quick-contact-option{transition:none}}
 @media print{body[data-catalog] .dirac-page-scroll,body[data-catalog] .quick-contact{display:none!important}}
+
+@media (prefers-reduced-motion: no-preference) {
+  body[data-catalog] main .crumbs a {
+    text-decoration-thickness: .08em;
+    transition: text-underline-offset 1.2s ease, text-decoration-thickness 1.2s ease;
+  }
+  body[data-catalog] main .crumbs a:is(:hover, :focus-visible) {
+    text-underline-offset: .38em;
+    text-decoration-thickness: .14em;
+  }
+  body[data-catalog] main .search:focus-within label {
+    animation: catalog-search-label-light 1.6s ease-out 1;
+  }
+  @keyframes catalog-search-label-light {
+    from { text-shadow: 0 0 .65em currentColor; }
+    to { text-shadow: 0 0 0 transparent; }
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  body[data-catalog] .media-box img[data-detail-image] {
+    transition: scale 1.8s cubic-bezier(.2,.7,.24,1);
+  }
+  body[data-catalog] .media-box:hover img[data-detail-image] {
+    scale: 1.025;
+  }
+}
